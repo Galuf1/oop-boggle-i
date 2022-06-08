@@ -50,15 +50,16 @@ class BoggleBoard:
       for j,side in enumerate(self.board[i]):
         if char == side:
           return (i,j)
+    return False
 
   def include_word(self,target):
-    pass
-    target_list = list(target)
-    for i in self.board:
-      if target_list[0] in i:
-        print("valid start")
-    print("invalid")
-    
+    x = 1
+    pos = self.include_char(target[x])
+    pos1 = self.include_char(target[0])
+    while x < len(target):
+      if pos1:
+        self._is_neighbour(pos[0],pos[1],)
+      
 
     # if target_list[0] not in self.board:
     #   return False
