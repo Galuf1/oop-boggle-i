@@ -36,19 +36,34 @@ class BoggleBoard:
       line_format= '{:<2} {:<2} {:<2} {:<2}'.format(i[0],i[1],i[2],i[3])
       print(line_format)
 
-  def include_word(self,target):
-    visited=set()
-    
-
-  def _get_neighbours(self,a,b):
+  def _is_neighbour(self,a,b,a1, b1):
     possible_neighbours= [(a-1,b), (a+1,b), (a,b-1), (a,b+1), (a-1,b-1), (a-1,b+1), (a+1,b-1), (a+1,b+1)]
     neighbours = []
     for i in possible_neighbours:
       if i[0] < len(self.board[0]) and i[0] >= 0:
         if i[1] < len(self.board) and i[1] >=0:
           neighbours.append(i)
-    print(neighbours)
-      
+    return (a1,b1) in possible_neighbours
+  
+  def include_char(self,char):
+    for i, die in enumerate(self.board):
+      for j,side in enumerate(self.board[i]):
+        if char == side:
+          return (i,j)
+
+  def include_word(self,target):
+    pass
+    target_list = list(target)
+    for i in self.board:
+      if target_list[0] in i:
+        print("valid start")
+    print("invalid")
+    
+
+    # if target_list[0] not in self.board:
+    #   return False
+    # for i in range(1,len(target_list)):
+    #   if self._is_neighbour()
     
 
 
@@ -59,5 +74,8 @@ game = BoggleBoard()
 print(game.create_die())
 print("------------------------------------")
 game.shake()
-game.include_word("hi")
+game.include_word("PLG")
+
+
+
 
