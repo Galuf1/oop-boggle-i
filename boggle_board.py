@@ -36,29 +36,42 @@ class BoggleBoard:
       line_format= '{:<2} {:<2} {:<2} {:<2}'.format(i[0],i[1],i[2],i[3])
       print(line_format)
 
-  def _is_neighbour(self,a,b,a1, b1):
+  def _neighbours(self,a,b):
     possible_neighbours= [(a-1,b), (a+1,b), (a,b-1), (a,b+1), (a-1,b-1), (a-1,b+1), (a+1,b-1), (a+1,b+1)]
     neighbours = []
     for i in possible_neighbours:
       if i[0] < len(self.board[0]) and i[0] >= 0:
         if i[1] < len(self.board) and i[1] >=0:
           neighbours.append(i)
-    return (a1,b1) in possible_neighbours
+    return neighbours
   
   def include_char(self,char):
+    positions = []
     for i, die in enumerate(self.board):
       for j,side in enumerate(self.board[i]):
         if char == side:
-          return (i,j)
-    return False
+          positions.append((i,j))
+    if len(positions) > 0:
+      return positions
+    else:
+      return False
 
   def include_word(self,target):
-    x = 1
-    pos = self.include_char(target[x])
-    pos1 = self.include_char(target[0])
-    while x < len(target):
-      if pos1:
-        self._is_neighbour(pos[0],pos[1],)
+    # index0 = self.include_char(target[0])
+    # if not index0:
+    #   return False
+    # for i in range(0,len(target)-1):
+    #   temp = self.include_char(target[i+1])
+    #   test = self.include_char(target[i])
+    #   if temp and test:
+    #     for pos in temp:
+    #       if pos in self._neighbours(test[0],test[1]):
+    #         continue
+    #       else:
+    #         return False
+    # return True
+    
+    
       
 
     # if target_list[0] not in self.board:
@@ -75,7 +88,7 @@ game = BoggleBoard()
 print(game.create_die())
 print("------------------------------------")
 game.shake()
-game.include_word("PLG")
+print(game.include_word("PL"))
 
 
 
